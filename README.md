@@ -1,8 +1,14 @@
 # Dockerfiles & YAML definitions for Apache Drill
 
+Docker images for Apache Drill are available on [Docker Hub](https://hub.docker.com/r/drill/). This repository includes scripts to launch Drill containers under Docker, and YAML files to launch them under Kubernetes. It also incldues Dockerfiles to customize the Docker images.
+
 ## Bringing up Apache Drill in Docker environment
 
 ### Embedded mode:
+
+To quickly try out Apache Drill on a single node, install Drill in embedded mode. When launching Drill in embedded mode via the Drill shell, a local Drillbit service starts automatically. Drillbits are also automatically stopped when exiting from the shell. 
+
+Below are steps to launch a single Drillbit in a Docker environment. It assumes that the Docker service is up and running on the host.
 
 #### Clone repository 
 
@@ -22,13 +28,15 @@
 
 ### Distributed mode:
 
+Drill can be deployed in a distributed cluster environment, for large-scale data processing. Zookeeper is used for cluster co-ordination and is a pre-requisite for this mode. The current set of images include stand-alone zookeeper and drill. HDFS is not included.
+
 #### Clone repository 
 
 ```git clone git@github.com:Agirish/drill-docker.git```
 
 #### Launch Zookeeper container 
 
-```cd drill-docker/scripts` 
+```cd drill-docker/scripts``` 
 
 ```./launchDockerContainer.sh zookeeper centos 3.4.10```
 
@@ -58,6 +66,10 @@ Repeat steps (3)-(5) to add more Drillbits to the Drill cluster
 
 ### Embedded mode:
 
+To quickly try out Apache Drill on a single node, install Drill in embedded mode. When launching Drill in embedded mode via the Drill shell, a local Drillbit service starts automatically. Drillbits are also automatically stopped when exiting from the shell. 
+
+Below are steps to launch a single Drillbit in a Docker environment. It assumes that the Docker service is up and running on the host.
+
 #### Clone repository 
 
 ```git clone git@github.com:Agirish/drill-docker.git```
@@ -75,6 +87,8 @@ Repeat steps (3)-(5) to add more Drillbits to the Drill cluster
 
 
 ### Distributed mode:
+
+Drill can be deployed in a distributed cluster environment, for large-scale data processing. Zookeeper is used for cluster co-ordination and is a pre-requisite for this mode. The current set of images include stand-alone zookeeper and drill. HDFS is not included.
 
 #### Clone repository 
 
