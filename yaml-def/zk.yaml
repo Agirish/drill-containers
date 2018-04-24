@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: zk1
+  name: zookeeper-pod
 spec:
       containers:
-      - name: zk1
+      - name: zookeeper
         imagePullPolicy: Always
         image: drill/apache-zookeeper-centos:3.4.10
         ports:
