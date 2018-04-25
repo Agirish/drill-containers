@@ -9,4 +9,8 @@ spec:
         image: drill/apache-zookeeper-centos:3.4.10
         ports:
         - containerPort: 2181
+          name: client
+        - containerPort: 2888
           name: server
+        - containerPort: 3888
+          name: leader-election
