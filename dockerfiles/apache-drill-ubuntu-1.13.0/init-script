@@ -14,7 +14,7 @@ ufw disable
 /bin/sed -i 's/^PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 nohup /usr/sbin/sshd -D &
 
-while true
-do
-sleep 5
-done
+sed -i 's/localhost/zookeeper-service/g' /opt/drill/conf/drill-override.conf
+sleep 5 ; /opt/drill/bin/drillbit.sh restart
+
+while true; do sleep 5; done
