@@ -67,8 +67,8 @@ Below are steps to launch a single Drillbit in a Docker environment. It assumes 
 
 ```
 git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/yaml-def
-kubectl -create drill.yaml
+cd drill-containers/yaml-def/[centos/ubuntu]
+kubectl -create drill-pod.yaml
 ``` 
 
 #### Start Drillbits 
@@ -86,15 +86,15 @@ Drill can be deployed in a distributed cluster environment, for large-scale data
 
 ```
 git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/yaml-def
-kubectl -create zk.yaml
+cd drill-containers/yaml-def/[centos/ubuntu]
+kubectl -create zk-service.yaml
 ```
 Make a note of the ZK container IP address (ZK_IP_ADDR)
     
 #### Launch Drill container 
 
 ```
-kubectl -create drill.yaml
+kubectl -create drill-service.yaml
 ```
 
 #### Configure Drillbits
