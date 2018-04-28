@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: apache
   name: drillbit-pod
 spec:
       containers:
