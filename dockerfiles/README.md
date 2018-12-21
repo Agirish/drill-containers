@@ -8,9 +8,9 @@ Below are steps to launch a single Drillbit in a Docker environment. It assumes 
 
 #### Launch Drill container 
 ```
-git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/scripts
-./launchDockerContainer.sh drill centos 1.13.0 
+git clone git@github.com:agirish/drill-containers.git
+cd drill-containers/dockerfiles/centos/drill
+./launch.sh 1.13.0 
 ``` 
 
 #### Start Drillbits 
@@ -25,16 +25,18 @@ Drill can be deployed in a distributed cluster environment, for large-scale data
 
 #### Launch Zookeeper container 
 ```
-git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/scripts
-./launchDockerContainer.sh zookeeper centos 3.4.10
+git clone git@github.com:agirish/drill-containers.git
+cd drill-containers/dockerfiles/centos/zookeeper
+./launch.sh
 ```
 Make a note of the ZK container IP address (ZK_IP_ADDR)
     
 #### Launch Drill container 
 ```
-./launchDockerContainer.sh drill centos 1.13.0
-```
+git clone git@github.com:agirish/drill-containers.git
+cd drill-containers/dockerfiles/centos/drill
+./launch.sh 1.13.0 
+``` 
 
 #### Configure Drillbits
 
@@ -50,20 +52,32 @@ Edit `/opt/drill/conf/drill-override.conf`. Update the `zk.connect` string with 
 
 The [dockerfiles](dockerfiles) directory contains Dockerfiles & dependencies required to build and customize Docker images. Included are dockerfiles for Apache Drill and Apache ZooKeeper. 
 
-The [scripts](scripts) directory contains scripts needed to build, push and launch Docker containers
+The project directory contains scripts needed to build, push and launch Docker containers
 
-##### [buildDockerImage.sh](scripts/buildDockerImage.sh)
-Takes in 3 parameters - the project, operating system and version. Example below:
+##### [Build ZooKeeper](dockerfiles/centos/zookeeper/build.sh)
+Takes in no parameters. Example below:
 ```
-./buildDockerImage.sh drill centos 1.14.0
+cd drill-containers/dockerfiles/centos/zookeeper
+./build.sh
 ```
-##### [pushDockerImage.sh](scripts/pushDockerImage.sh)
-Takes in 3 parameters - the project, operating system and version. Example below:
+
+##### [Build Drill](dockerfiles/centos/drill/build.sh)
+Takes in 1 parameters - the project version. Example below:
 ```
-./pushDockerImage.sh drill centos 1.14.0
+cd drill-containers/dockerfiles/centos/drill
+./build.sh 1.14.0
 ```
-##### [launchDockerContainer.sh](scripts/launchDockerContainer.sh)
-Takes in 3 parameters - the project, operating system and version. Example below:
+
+##### [Launch ZooKeeper](dockerfiles/centos/zookeeper/launch.sh)
+Takes in no parameters. Example below:
 ```
-./launchDockerContainer.sh drill centos 1.14.0
+cd drill-containers/dockerfiles/centos/zookeeper
+./launch.sh
+```
+
+##### [Launch Drill](dockerfiles/centos/drill/launch.sh)
+Takes in 1 parameters - the project version. Example below:
+```
+cd drill-containers/dockerfiles/centos/drill
+./launch.sh 1.14.0
 ```
