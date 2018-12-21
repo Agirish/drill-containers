@@ -1,7 +1,9 @@
 # Specify the Operating System Image
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 
-RUN echo 'root:mapr' | chpasswd
+ARG VERSION
+
+RUN echo 'root:drill' | chpasswd
 
 # Update Sources and install some basic packages
 RUN apt-get update
@@ -17,9 +19,9 @@ RUN apt-get update
 RUN apt-get install --force-yes --yes openjdk-8-jdk
 
 # Install Drill
-RUN wget http://apache.claz.org/drill/drill-1.13.0/apache-drill-1.13.0.tar.gz
+RUN wget http://apache.claz.org/drill/drill-$VERSION/apache-drill-$VERSION.tar.gz
 RUN mkdir /opt/drill
-RUN tar -xzf apache-drill-1.13.0.tar.gz --directory=/opt/drill --strip-components 1
+RUN tar -xzf apache-drill-$VERSION.tar.gz --directory=/opt/drill --strip-components 1
 
 # Test Drill
 RUN echo "select * from sys.version;" > /tmp/version.sql

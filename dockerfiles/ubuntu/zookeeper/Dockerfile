@@ -1,5 +1,6 @@
-# Specify the Operating System Image
 FROM ubuntu:18.04
+
+ARG VERSION
 
 RUN echo 'root:mapr' | chpasswd
 
@@ -17,9 +18,9 @@ RUN apt-get update
 RUN apt-get install --force-yes --yes openjdk-8-jdk
 
 # Install Zookeeper
-RUN wget http://apache.mirrors.lucidnetworks.net/zookeeper/stable/zookeeper-3.4.10.tar.gz
+RUN wget http://apache.claz.org/zookeeper/zookeeper-3.4.10/zookeeper-$VERSION.tar.gz > /dev/null 2>&1
 RUN mkdir /opt/zookeeper
-RUN tar -xzf zookeeper-3.4.10.tar.gz --directory=/opt/zookeeper --strip-components 1
+RUN tar -xzf zookeeper-$VERSION.tar.gz --directory=/opt/zookeeper --strip-components 1
 
 # Configure Zookeeper
 RUN printf "tickTime=2000\ndataDir=/var/lib/zookeeper\nclientPort=2181" > /opt/zookeeper/conf/zoo.cfg
