@@ -7,7 +7,7 @@ spec:
       containers:
       - name: zookeeper
         imagePullPolicy: Always
-        image: drill/apache-zookeeper-centos:3.4.10
+        image: agirish/zookeeper:3.4.10
         ports:
         - containerPort: 2181
           name: client
