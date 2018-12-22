@@ -23,5 +23,5 @@ RUN echo "select * from sys.version;" > /tmp/version.sql
 RUN /opt/drill/bin/sqlline -u jdbc:drill:zk=local --run=/tmp/version.sql
 
 # Start Drill
-COPY init-script /usr/bin/start.sh
+COPY start.sh /usr/bin/start.sh
 ENTRYPOINT /usr/bin/start.sh

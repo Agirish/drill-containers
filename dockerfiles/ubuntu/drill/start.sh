@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 IP=$(ip addr show eth0 | grep -w inet | awk '{ print $2}' | cut -d "/" -f1)
 HOSTNAME_SUFFIX=`echo -e "${IP}" | cut -d '.' -f 4`

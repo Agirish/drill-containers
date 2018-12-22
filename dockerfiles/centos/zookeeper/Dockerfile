@@ -22,5 +22,5 @@ RUN tar -xzf zookeeper-$VERSION.tar.gz --directory=/opt/zookeeper --strip-compon
 RUN printf "tickTime=2000\ndataDir=/var/lib/zookeeper\nclientPort=2181" > /opt/zookeeper/conf/zoo.cfg
 
 # Start ZooKeeper
-COPY init-script /usr/bin/start.sh
+COPY start.sh /usr/bin/start.sh
 ENTRYPOINT /usr/bin/start.sh
