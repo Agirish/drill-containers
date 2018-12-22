@@ -3,8 +3,8 @@ FROM centos:7
 ARG VERSION
 
 # Install Pre-Requisite Packages
-RUN yum install -y openssh-server openssh-clients epel-release java-1.8.0-openjdk-devel; yum clean all ; rm -rf /var/cache/yum
-RUN yum install -y pssh sshpass vim clustershell git wget which redhat-lsb-core; yum clean all ; rm -rf /var/cache/yum
+RUN yum install -y openssh-server openssh-clients epel-release; yum clean all ; rm -rf /var/cache/yum
+RUN yum install -y java-1.8.0-openjdk-devel redhat-lsb-core vim wget which; yum clean all ; rm -rf /var/cache/yum
 RUN sed -i 's/^mirror/#mirror/g' /etc/yum.repos.d/epel.repo
 RUN sed -i 's/^#base/base/g' /etc/yum.repos.d/epel.repo
 

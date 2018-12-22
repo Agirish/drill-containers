@@ -1,7 +1,13 @@
 #!/bin/bash
 
 PROJECT=zookeeper
-VERSION=3.4.10
+VERSION=$1
+
+if [[ ${VERSION} == "" ]]
+then
+  echo "Please enter the ZooKeeper VERSION string. For ex: 3.4.10"
+  exit -1
+fi
 
 docker pull agirish/${PROJECT}:${VERSION}
 

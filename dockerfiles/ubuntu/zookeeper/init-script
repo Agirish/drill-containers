@@ -16,7 +16,4 @@ nohup /usr/sbin/sshd -D &
 
 /opt/zookeeper/bin/zkServer.sh start
 
-while true
-do
-sleep 5
-done
+while true; do sleep 5; done

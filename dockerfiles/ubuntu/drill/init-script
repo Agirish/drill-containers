@@ -15,6 +15,6 @@ ufw disable
 nohup /usr/sbin/sshd -D &
 
 sed -i 's/localhost/zookeeper-service/g' /opt/drill/conf/drill-override.conf
-sleep 5 ; /opt/drill/bin/drillbit.sh restart
+/opt/drill/bin/drillbit.sh restart
 
 while true; do sleep 5; done

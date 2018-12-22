@@ -2,7 +2,13 @@
 
 PROJECT=zookeeper
 OS=ubuntu
-VERSION=3.4.10
+VERSION=$1
+
+if [[ ${VERSION} == "" ]]
+then
+  echo "Please enter the ZooKeeper VERSION string. For ex: 3.4.10"
+  exit -1
+fi
 
 docker build --build-arg VERSION=${VERSION} -t ${PROJECT}:${VERSION}-${OS} .
 

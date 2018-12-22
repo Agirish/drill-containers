@@ -1,14 +1,13 @@
-# Specify the Operating System Image
 FROM ubuntu:18.10
 
 ARG VERSION
 
 # Install Pre-Requisite Packages 
 RUN apt-get update
-RUN apt-get install --force-yes --yes software-properties-common openssh-server openssh-client python ufw 
+RUN apt-get install --force-yes --yes software-properties-common openssh-server openssh-client ufw
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
-RUN apt-get install --force-yes --yes openjdk-8-jdk vim wget sshpass 
+RUN apt-get install --force-yes --yes openjdk-8-jdk vim wget
 
 # Configure User Login
 RUN echo 'root:drill' | chpasswd
