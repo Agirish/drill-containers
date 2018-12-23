@@ -1,6 +1,7 @@
 FROM centos:7
 
-ARG VERSION
+ARG VERSION_ARG
+ENV VERSION_ENV=$VERSION_ARG
 
 # Install Pre-Requisite Packages
 RUN yum install -y openssh-server openssh-clients epel-release; yum clean all ; rm -rf /var/cache/yum
@@ -14,9 +15,9 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install Drill
-RUN wget http://apache.claz.org/drill/drill-$VERSION/apache-drill-$VERSION.tar.gz > /dev/null 2>&1
+RUN wget http://apache.claz.org/drill/drill-$VERSION_ENV/apache-drill-$VERSION_ENV.tar.gz > /dev/null 2>&1
 RUN mkdir /opt/drill
-RUN tar -xzf apache-drill-$VERSION.tar.gz --directory=/opt/drill --strip-components 1
+RUN tar -xzf apache-drill-$VERSION_ENV.tar.gz --directory=/opt/drill --strip-components 1
 
 # Test Drill
 RUN echo "select * from sys.version;" > /tmp/version.sql

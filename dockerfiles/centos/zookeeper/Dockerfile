@@ -1,6 +1,7 @@
 FROM centos:7
 
-ARG VERSION
+ARG VERSION_ARG
+ENV VERSION_ENV=$VERSION_ARG
 
 # Install Pre-Requisite Packages
 RUN yum install -y openssh-server openssh-clients epel-release; yum clean all ; rm -rf /var/cache/yum
@@ -14,9 +15,9 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install ZooKeeper
-RUN wget http://apache.claz.org/zookeeper/zookeeper-3.4.10/zookeeper-$VERSION.tar.gz > /dev/null 2>&1
+RUN wget http://apache.claz.org/zookeeper/zookeeper-3.4.10/zookeeper-$VERSION_ENV.tar.gz > /dev/null 2>&1
 RUN mkdir /opt/zookeeper
-RUN tar -xzf zookeeper-$VERSION.tar.gz --directory=/opt/zookeeper --strip-components 1
+RUN tar -xzf zookeeper-$VERSION_ENV.tar.gz --directory=/opt/zookeeper --strip-components 1
 
 # Configure ZooKeeper
 RUN printf "tickTime=2000\ndataDir=/var/lib/zookeeper\nclientPort=2181" > /opt/zookeeper/conf/zoo.cfg
