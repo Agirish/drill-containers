@@ -2,6 +2,7 @@ FROM centos:7
 
 ARG VERSION_ARG
 ENV VERSION_ENV=$VERSION_ARG
+RUN echo ${VERSION_ENV}
 
 # Install Pre-Requisite Packages
 RUN yum install -y openssh-server openssh-clients epel-release; yum clean all ; rm -rf /var/cache/yum

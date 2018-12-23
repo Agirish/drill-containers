@@ -2,6 +2,7 @@ FROM ubuntu:18.10
 
 ARG VERSION_ARG
 ENV VERSION_ENV=$VERSION_ARG
+RUN echo ${VERSION_ENV}
 
 # Install Pre-Requisite Packages
 RUN apt-get update
