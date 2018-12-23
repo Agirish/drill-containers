@@ -15,7 +15,7 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install ZooKeeper
-RUN wget http://apache.claz.org/zookeeper/zookeeper-3.4.10/zookeeper-$VERSION_ENV.tar.gz > /dev/null 2>&1
+RUN wget http://apache.claz.org/zookeeper/zookeeper-$VERSION_ENV/zookeeper-$VERSION_ENV.tar.gz > /dev/null 2>&1
 RUN mkdir /opt/zookeeper
 RUN tar -xzf zookeeper-$VERSION_ENV.tar.gz --directory=/opt/zookeeper --strip-components 1
 
