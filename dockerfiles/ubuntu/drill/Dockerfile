@@ -16,9 +16,10 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install Drill
-RUN wget http://apache.claz.org/drill/drill-$VERSION/apache-drill-$VERSION.tar.gz
+ADD http://apache.claz.org/drill/drill-$VERSION/apache-drill-$VERSION.tar.gz /tmp/
 RUN mkdir /opt/drill
-RUN tar -xzf apache-drill-$VERSION.tar.gz --directory=/opt/drill --strip-components 1
+RUN tar -xzf /tmp/apache-drill-$VERSION.tar.gz --directory=/opt/drill --strip-components 1
+RUN rm -f /tmp/apache-drill-$VERSION.tar.gz
 
 # Test Drill
 RUN echo "select * from sys.version;" > /tmp/version.sql
