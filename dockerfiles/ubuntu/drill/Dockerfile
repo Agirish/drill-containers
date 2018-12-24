@@ -1,8 +1,7 @@
 FROM ubuntu:18.10
 
-ARG VERSION_ARG
-ENV VERSION_ENV=$VERSION_ARG
-RUN echo $VERSION_ENV
+ARG VERSION
+RUN echo $VERSION
 
 # Install Pre-Requisite Packages 
 RUN apt-get update
@@ -17,9 +16,9 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install Drill
-RUN wget http://apache.claz.org/drill/drill-$VERSION_ENV/apache-drill-$VERSION_ENV.tar.gz
+RUN wget http://apache.claz.org/drill/drill-$VERSION/apache-drill-$VERSION.tar.gz
 RUN mkdir /opt/drill
-RUN tar -xzf apache-drill-$VERSION_ENV.tar.gz --directory=/opt/drill --strip-components 1
+RUN tar -xzf apache-drill-$VERSION.tar.gz --directory=/opt/drill --strip-components 1
 
 # Test Drill
 RUN echo "select * from sys.version;" > /tmp/version.sql

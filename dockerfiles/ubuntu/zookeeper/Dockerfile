@@ -1,8 +1,7 @@
 FROM ubuntu:18.10
 
-ARG VERSION_ARG
-ENV VERSION_ENV=$VERSION_ARG
-RUN echo $VERSION_ENV
+ARG VERSION
+RUN echo $VERSION
 
 # Install Pre-Requisite Packages
 RUN apt-get update
@@ -17,9 +16,9 @@ RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
 RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install ZooKeeper
-RUN wget http://apache.claz.org/zookeeper/zookeeper-$VERSION_ENV/zookeeper-$VERSION_ENV.tar.gz
+RUN wget http://apache.claz.org/zookeeper/zookeeper-$VERSION/zookeeper-$VERSION.tar.gz
 RUN mkdir /opt/zookeeper
-RUN tar -xzf zookeeper-$VERSION_ENV.tar.gz --directory=/opt/zookeeper --strip-components 1
+RUN tar -xzf zookeeper-$VERSION.tar.gz --directory=/opt/zookeeper --strip-components 1
 
 # Configure ZooKeeper
 RUN printf "tickTime=2000\ndataDir=/var/lib/zookeeper\nclientPort=2181" > /opt/zookeeper/conf/zoo.cfg

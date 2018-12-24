@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --build-arg VERSION_ARG=${VERSION_ENV}  -t agirish/zookeeper:${VERSION_ENV} -t agirish/zookeeper:${VERSION_ENV}-centos .
+docker build --build-arg VERSION=${VERSION_ENV}  -t agirish/zookeeper:${VERSION_ENV} -t agirish/zookeeper:${VERSION_ENV}-centos .
