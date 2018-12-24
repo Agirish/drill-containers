@@ -6,9 +6,9 @@ This repository includes scripts to launch Drill containers under Docker, and YA
 
 ### Bringing up Apache Drill in Kubernetes environment
 
-Refer to [Kubernetes ReadMe](yaml-def/README.md)
+Refer to [Kubernetes ReadMe](kubernetes/README.md)
 
 ### Bringing up Apache Drill in Docker environment
 
-Refer to [Docker ReadMe](dockerfiles/README.md)
+Refer to [Docker ReadMe](docker/README.md)
 
