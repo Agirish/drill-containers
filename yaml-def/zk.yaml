@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: apache
-  name: zookeeper-service
+  name: zk-service
 spec:
   ports:
   - name: client
@@ -12,20 +12,20 @@ spec:
   - name: leader-election
     port: 3888
   selector:
-   app: zookeeper-app
+   app: zk-app
 ---
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
   namespace: apache
-  name: zookeeper-set
+  name: zk
 spec:
-  serviceName: zookeeper-service
+  serviceName: zk-service
   replicas: 1
   template:
     metadata:
       labels:
-        app: zookeeper-app
+        app: zk-app
     spec:
       affinity:
         podAntiAffinity:
@@ -35,12 +35,12 @@ spec:
               - key: app
                 operator: In
                 values:
-                - zookeeper-app
+                - zk-app
             topologyKey: "kubernetes.io/hostname"
       containers:
-      - name: zookeeper-pod
+      - name: zk-pod
         imagePullPolicy: Always
-        image: agirish/zookeeper:1.14.0
+        image: agirish/zookeeper:3.4.10
         ports:
         - containerPort: 2181
           name: client

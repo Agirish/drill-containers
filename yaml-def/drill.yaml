@@ -20,7 +20,7 @@ apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
   namespace: apache
-  name: drill-set
+  name: drillbit
 spec:
   serviceName: drill-service
   replicas: 1
@@ -55,4 +55,4 @@ spec:
       initContainers:
       - name: zk-available
         image: busybox
-        command: ['sh', '-c', 'until nc -z zookeeper-service 2181; do echo Waiting for ZK to come up; sleep 5; done; ']
+        command: ['sh', '-c', 'until nc -z zk-service 2181; do echo Waiting for ZK to come up; sleep 5; done; ']
