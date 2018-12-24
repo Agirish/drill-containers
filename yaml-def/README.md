@@ -1,52 +1,58 @@
 ## Apache Drill on Kubernetes
 
-### Embedded mode:
-
-To quickly try out Apache Drill on a single node, install Drill in embedded mode. When launching Drill in embedded mode via the Drill shell, a local Drillbit service starts automatically. Drillbits are also automatically stopped when exiting from the shell. 
-
-Below are steps to launch a single Drillbit in a Docker environment. It assumes that the Docker service is up and running on the host.
-
-#### Launch Drill container 
-
-```
-git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/yaml-def/[centos/ubuntu]
-kubectl -create drill-pod.yaml
-``` 
-
-#### Start Drillbits 
-
-```
-/opt/drill/bin/drill-embedded
-```
- 
-
-### Distributed mode:
-
 Drill can be deployed in a distributed cluster environment, for large-scale data processing. Zookeeper is used for cluster co-ordination and is a pre-requisite for this mode. The current set of images include stand-alone zookeeper and drill. HDFS is not included.
 
-#### Launch Zookeeper container 
+#### Clone Repository
 
 ```
-git clone git@github.com:Agirish/drill-containers.git
-cd drill-containers/yaml-def/[centos/ubuntu]
-kubectl -create zk-service.yaml
+git clone git@github.com:agirish/drill-containers.git
+cd drill-containers/yaml-def
+``` 
+
+#### Create Namespace
+
 ```
-Make a note of the ZK container IP address (ZK_IP_ADDR)
+$ kubectl create -f namespace.yaml
+namespace "apache" created
+``` 
+
+#### Launch Zookeeper 
+
+```
+$ kubectl create -f zk.yaml 
+service "zk-service" created
+statefulset.apps "zk" created
+```
     
-#### Launch Drill container 
+#### Launch Drill 
 
 ```
-kubectl -create drill-service.yaml
+$ kubectl create -f drill.yaml 
+service "drill-service" created
+statefulset.apps "drillbit" created
 ```
-
-#### Configure Drillbits
-
-Edit `/opt/drill/conf/drill-override.conf`. Update the `zk.connect` string with ZK_IP_ADDR 
-    
-#### Start Drillbits 
+#### Check Status 
 
 ```
-/opt/drill/bin/drillbit.sh start
-/opt/drill/bin/sqlline -u jdbc:drill:zk=ZK_IP_ADDR:2181
+$ kubectl get pods -n apache -w
+NAME         READY     STATUS    RESTARTS   AGE
+drillbit-0   1/1       Running   0          40s
+zk-0         1/1       Running   0          1m
+```
+
+#### Connect to Sqlline
+
+```
+$ kubectl exec -it drillbit-0 --namespace=apache -- bash
+
+# /opt/drill/bin/drill-localhost
+apache drill 1.14.0 
+"a drill is a terrible thing to waste"
+0: jdbc:drill:drillbit=localhost> select version from sys.drillbits;
++----------+
+| version  |
++----------+
+| 1.14.0   |
++----------+
+1 row selected (0.371 seconds)
 ```
