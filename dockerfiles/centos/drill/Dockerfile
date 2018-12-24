@@ -6,15 +6,10 @@ ARG MIRROR=http://apache.claz.org/drill
 RUN echo $MIRROR
 
 # Install Pre-Requisite Packages
-RUN yum install -y openssh-server openssh-clients epel-release; yum clean all ; rm -rf /var/cache/yum
-RUN yum install -y java-1.8.0-openjdk-devel redhat-lsb-core vim wget which; yum clean all ; rm -rf /var/cache/yum
-RUN sed -i 's/^mirror/#mirror/g' /etc/yum.repos.d/epel.repo
-RUN sed -i 's/^#base/base/g' /etc/yum.repos.d/epel.repo
+RUN yum install -y java-1.8.0-openjdk-devel vim which; yum clean all ; rm -rf /var/cache/yum
 
 # Configure User Login
 RUN echo 'root:drill' | chpasswd
-RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
-RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install Drill
 ADD $MIRROR/drill-$VERSION/apache-drill-$VERSION.tar.gz /tmp/
