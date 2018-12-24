@@ -9,7 +9,7 @@ Below are steps to launch a single Drillbit in a Docker environment. It assumes 
 #### Launch Drill container 
 ```
 git clone git@github.com:agirish/drill-containers.git
-cd drill-containers/dockerfiles/centos/drill
+cd drill-containers/docker/centos/drill
 ./launch.sh 1.13.0 
 ``` 
 
@@ -26,7 +26,7 @@ Drill can be deployed in a distributed cluster environment, for large-scale data
 #### Launch Zookeeper container 
 ```
 git clone git@github.com:agirish/drill-containers.git
-cd drill-containers/dockerfiles/centos/zookeeper
+cd drill-containers/docker/centos/zookeeper
 ./launch.sh
 ```
 Make a note of the ZK container IP address (ZK_IP_ADDR)
@@ -34,7 +34,7 @@ Make a note of the ZK container IP address (ZK_IP_ADDR)
 #### Launch Drill container 
 ```
 git clone git@github.com:agirish/drill-containers.git
-cd drill-containers/dockerfiles/centos/drill
+cd drill-containers/docker/centos/drill
 ./launch.sh 1.13.0 
 ``` 
 
@@ -50,34 +50,34 @@ Edit `/opt/drill/conf/drill-override.conf`. Update the `zk.connect` string with 
 
 ### Building Custom Docker Images
 
-The [dockerfiles](dockerfiles) directory contains Dockerfiles & dependencies required to build and customize Docker images. Included are dockerfiles for Apache Drill and Apache ZooKeeper. 
+The [docker](docker) directory contains Dockerfiles & dependencies required to build and customize Docker images. Included are docker for Apache Drill and Apache ZooKeeper. 
 
 The project directory contains scripts needed to build, push and launch Docker containers
 
-##### [Build ZooKeeper](dockerfiles/centos/zookeeper/build.sh)
+##### [Build ZooKeeper](docker/centos/zookeeper/build.sh)
 Takes in no parameters. Example below:
 ```
-cd drill-containers/dockerfiles/centos/zookeeper
+cd drill-containers/docker/centos/zookeeper
 ./build.sh
 ```
 
-##### [Build Drill](dockerfiles/centos/drill/build.sh)
+##### [Build Drill](docker/centos/drill/build.sh)
 Takes in 1 parameters - the project version. Example below:
 ```
-cd drill-containers/dockerfiles/centos/drill
+cd drill-containers/docker/centos/drill
 ./build.sh 1.14.0
 ```
 
-##### [Launch ZooKeeper](dockerfiles/centos/zookeeper/launch.sh)
+##### [Launch ZooKeeper](docker/centos/zookeeper/launch.sh)
 Takes in no parameters. Example below:
 ```
-cd drill-containers/dockerfiles/centos/zookeeper
+cd drill-containers/docker/centos/zookeeper
 ./launch.sh
 ```
 
-##### [Launch Drill](dockerfiles/centos/drill/launch.sh)
+##### [Launch Drill](docker/centos/drill/launch.sh)
 Takes in 1 parameters - the project version. Example below:
 ```
-cd drill-containers/dockerfiles/centos/drill
+cd drill-containers/docker/centos/drill
 ./launch.sh 1.14.0
 ```

@@ -6,7 +6,7 @@ Drill can be deployed in a distributed cluster environment, for large-scale data
 
 ```
 git clone git@github.com:agirish/drill-containers.git
-cd drill-containers/yaml-def
+cd drill-containers/kubernetes
 ``` 
 
 #### Create Namespace
