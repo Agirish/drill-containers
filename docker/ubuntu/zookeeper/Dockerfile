@@ -7,15 +7,13 @@ RUN echo $MIRROR
 
 # Install Pre-Requisite Packages
 RUN apt-get update
-RUN apt-get install --force-yes --yes software-properties-common openssh-server openssh-client ufw 
+RUN apt-get install --force-yes --yes software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get update
-RUN apt-get install --force-yes --yes openjdk-8-jdk vim wget
+RUN apt-get install --force-yes --yes openjdk-8-jdk vim
 
 # Configure User Login
 RUN echo 'root:drill' | chpasswd
-RUN /usr/bin/ssh-keygen -t rsa -N "" -f /root/.ssh/id_rsa
-RUN cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Install ZooKeeper
 ADD $MIRROR/zookeeper-$VERSION/zookeeper-$VERSION.tar.gz /tmp/
