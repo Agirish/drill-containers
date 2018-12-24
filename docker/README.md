@@ -54,28 +54,28 @@ The [docker](docker) directory contains Dockerfiles & dependencies required to b
 
 The project directory contains scripts needed to build, push and launch Docker containers
 
-##### [Build ZooKeeper](docker/centos/zookeeper/build.sh)
+##### [Build ZooKeeper](centos/zookeeper/build.sh)
 Takes in no parameters. Example below:
 ```
 cd drill-containers/docker/centos/zookeeper
 ./build.sh
 ```
 
-##### [Build Drill](docker/centos/drill/build.sh)
+##### [Build Drill](centos/drill/build.sh)
 Takes in 1 parameters - the project version. Example below:
 ```
 cd drill-containers/docker/centos/drill
 ./build.sh 1.14.0
 ```
 
-##### [Launch ZooKeeper](docker/centos/zookeeper/launch.sh)
+##### [Launch ZooKeeper](centos/zookeeper/launch.sh)
 Takes in no parameters. Example below:
 ```
 cd drill-containers/docker/centos/zookeeper
 ./launch.sh
 ```
 
-##### [Launch Drill](docker/centos/drill/launch.sh)
+##### [Launch Drill](centos/drill/launch.sh)
 Takes in 1 parameters - the project version. Example below:
 ```
 cd drill-containers/docker/centos/drill
